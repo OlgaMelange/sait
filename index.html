@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Olga</title>
+    <link href="https://fonts.googleapis.com/css2?family=Prata&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="icon" type="image/png" href="./images/favicon.png">
+    <style> 
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Prata', serif;
+            scroll-behavior: smooth;
+        }
+                .navbar {
+            height: 80px;
+            background-color: #000000;
+            color: #ffffff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+        }
+        .navbar .logo img {
+            width: 80px;
+            height: auto;
+        }
+        .navbar .nav-buttons {
+            display: flex;
+        }
+        .navbar .nav-buttons button {
+            margin: 0 5px;
+            padding: 8px 16px;
+            font-size: 1em;
+            cursor: pointer;
+            font-family: 'Prata', serif;
+            color: #000000;
+            background-color: #ffffff;
+            border: none;
+            border-radius: 5px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .navbar .nav-buttons button:hover {
+            background-color: #cccccc;
+            color: #000000;
+        }
+         /* Mobile dropdown menu */
+        .navbar .nav-dropdown {
+            display: none; /* Hidden on desktop */
+            position: relative;
+        }
+        .navbar .dropdown-button {
+            background-color: #ffffff;
+            border: none;
+            color: #000000;
+            padding: 10px 15px;
+            font-size: 1.2em;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .navbar .dropdown-button:hover {
+            background-color: #cccccc;
+            color: #000000;
+        }
+        .navbar .dropdown-content {
+            display: none;
+            position: absolute;
+            right: 0;
+            top: 100%;
+            background-color: #ffffff;
+            border-radius: 5px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+            z-index: 1001;
+        }
+        .navbar .dropdown-content button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            border: none;
+            background: none;
+            font-size: 1em;
+            cursor: pointer;
+            text-align: left;
+            color: #000000;
+        }
+        .navbar .dropdown-content button:hover {
+            background-color: #f0f0f0;
+        }
+
+        .navbar .dropdown-button:focus + .dropdown-content,
+        .navbar .dropdown-content:hover {
+            display: block;
+        }
+
+        /* Responsive design for smaller screens */
+        @media (max-width: 768px) {
+            .navbar .nav-buttons {
+                display: none; /* Hide full nav buttons on mobile */
+            }
+            .navbar .nav-dropdown {
+                display: flex; /* Show dropdown button on mobile */
+            }
+        }
+        body {
+            margin-top: 40px;
+        }
+        .full-screen-image {
+            background-image: url('./images/nastiaHomepage.JPG');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: #ffffff;
+        }
+/* =======================
+   Desktop Styles (Default)
+   ======================= */
+.about {
+    background-color: #ffffff;
+    color: #000000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+padding-top: 100px;
+    box-sizing: border-box;
+}
+
+.about .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 95%;
+    margin: auto;
+    box-sizing: border-box;
+}
+
+.about .left {
+    margin-right: 5px;
+    width: 30%;
+    display: flex;
+    justify-content: center;
+    align-items: center; /* Corrected typo */
+    box-sizing: border-box;
+}
+
+.about .image {
+    overflow: hidden;
+    margin-bottom: 30px;
+    text-align: center; /* Replaced invalid 'image-align' */
+    box-sizing: border-box;
+}
+
+.about img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.about .right {
+    margin-left: 5px;
+    width: 70%;
+    flex: 1;
+    box-sizing: border-box;
+}
+
+.about .right p {
+    font-size: 16px;
+    line-height: 1.6; /* Added for better readability */
+    margin-bottom: 1em; /* Consistent spacing */
+}
+
+.about .text {
+    width: 100%;
+    height: auto;
+    margin-left: 20px;
+    box-sizing: border-box;
+}
+
+.about .text-content {
+    padding: 0 20px;
+    font-size: 1.1em;
+    margin-top: 10px;
+    box-sizing: border-box;
+}
+
+.about .text-content p {
+    line-height: 1.4;
+    margin-bottom: 20px;
+}
+
+h1 {
+    font-family: 'Prata', serif;
+    font-size: 54px;
+    padding: 20px;
+    margin: 0;
+    text-align: center; /* Added for better alignment */
+}
+
+h2 {
+    font-family: 'Prata', serif;
+    font-size: 36px; /* Added font size for consistency */
+    text-align: center; /* Added for better alignment */
+}
+
+/* =======================
+   Mobile Styles (Within Media Query)
+   ======================= */
+@media (max-width: 768px) {
+    .about {
+        flex-direction: column; /* Stack items vertically */
+        justify-content: center;
+        padding-top: 100px;
+        min-height: 100vh;
+        box-sizing: border-box;
+    }
+
+    .about .container {
+        flex-direction: column;
+        align-items: center;
+        width: 95%;
+        margin: auto;
+        box-sizing: border-box;
+    }
+
+    .about-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 20px;
+        box-sizing: border-box;
+    }
+
+    .about .left,
+    .about .right {
+        width: 100%;
+        text-align: center;
+        margin: 0; /* Reset margins to prevent unwanted spacing */
+        box-sizing: border-box;
+    }
+
+    .about .image {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        margin-bottom: 20px; /* Adjusted for better spacing */
+        box-sizing: border-box;
+    }
+
+    .about .image img {
+        border-radius: 50%;
+        width: 150px;
+        height: 150px;
+        object-fit: cover;
+        object-position: top;
+        margin: 20px 0; /* Center the image */
+    }
+
+    .about .text {
+        max-width: 800px;
+        text-align: center;
+        padding: 0 20px;
+        margin: 20px 0; /* Adjusted margins for better spacing */
+        box-sizing: border-box;
+    }
+
+    .about .text-content p {
+        line-height: 1.4;
+        margin-bottom: 20px;
+        font-size: 1.1em;
+    }
+
+    h1 {
+        font-size: 36px; /* Reduced font size for mobile */
+        padding: 10px 0;
+        margin: 0 0 10px 0;
+    }
+
+    h2 {
+        font-family: 'Prata', serif; /* Corrected font-family */
+        font-size: 28px; /* Adjusted font size for mobile */
+        text-align: center; /* Ensured consistent alignment */
+    }
+}
+}
+        .videos {
+            padding-top: 100px;
+        }
+        .video-list {
+            align-items: end;
+            grid-auto-rows: 1fr;
+            list-style: none;
+            padding: 0;
+            margin: 20px auto;
+            max-width: 1000px;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-gap: 20px;
+        }
+        .video-item {
+            margin-bottom: 20px;
+        }
+        .video-title {
+            color: black;
+            text-decoration: none;
+        }
+                     @media (max-width: 768px) {
+    .video-list {
+        grid-template-columns: repeat(2, 1fr); /* Ensure two columns */
+    }
+}
+/* For very small screens, adjust to one column */
+@media (max-width: 480px) {
+    .video-list {
+        grid-template-columns: 1fr; /* One column */
+    }
+}
+        iframe {
+            width: 100%;
+            height: 315px;
+        }
+       /* Base Styles (Desktop First) */
+
+.pictures {
+    padding-top: 100px;
+}
+
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 10px;
+    justify-content: center;
+    padding: 20px;
+}
+
+.gallery img {
+    max-width: 100%;
+    max-height: 100%;
+    margin: 10px;
+    cursor: pointer;
+    transition: transform 0.2s;
+    object-fit: cover; /* Ensures images cover their container */
+}
+
+.gallery img:hover {
+    transform: scale(1.1);
+}
+
+.modal {
+    display: none;
+    justify-content: center;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
+.modal-content {
+    margin: auto;
+    display: block;
+    max-width: 90%;
+    max-height: 90%;
+}
+
+.close {
+    color: #fff;
+    position: absolute;
+    top: 10px;
+    right: 25px;
+    font-size: 30px;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 2001;
+}
+
+.pointer-left,
+.pointer-right {
+    position: absolute;
+    top: 50%;
+    width: auto;
+    padding: 16px;
+    cursor: pointer;
+    z-index: 2001;
+    color: white;
+    font-size: 30px;
+    user-select: none;
+    transition: background-color 0.3s;
+}
+
+.pointer-left {
+    left: 10px;
+}
+
+.pointer-right {
+    right: 10px;
+}
+
+.pointer-left:hover,
+.pointer-right:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+    border-radius: 50%;
+}
+
+/* Responsive Styles */
+
+/* Tablets and Small Desktops */
+@media (max-width: 1024px) {
+    .gallery {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    }
+
+    .gallery img {
+        margin: 8px;
+    }
+}
+
+/* Mobile Devices */
+@media (max-width: 768px) {
+    .gallery {
+        grid-template-columns: repeat(3, 1fr); /* 3 columns for medium screens */
+    }
+
+    .gallery img {
+        width: 100%;
+        height: auto; /* Maintain aspect ratio */
+    }
+}
+
+@media (max-width: 480px) {
+    .gallery {
+        grid-template-columns: repeat(2, 1fr); /* 2 columns for small screens */
+    }
+
+    .gallery img {
+        width: 100%;
+        height: auto; /* Maintain aspect ratio */
+        object-fit: cover; /* Ensure the image covers the container */
+    }
+
+    .pictures {
+        padding-top: 80px; /* Adjust padding for smaller screens if needed */
+    }
+
+    .close {
+        font-size: 24px; /* Smaller close button on mobile */
+        top: 5px;
+        right: 15px;
+    }
+
+    .pointer-left,
+    .pointer-right {
+        font-size: 24px; /* Smaller navigation arrows on mobile */
+        padding: 12px;
+    }
+}
+        .education {
+            padding-top: 100px;
+        }
+        .education, 
+        .experience {
+            margin-top: 40px;
+        }
+        .education .container,
+        .experience .container {
+            width: 80%;
+            max-width: 1200px;
+            margin: auto;
+            padding: 0 40px;
+        }
+        .experience-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            border-radius: 5px;
+            transition: transform 0.3s ease;
+        }
+        .experience-item:hover {
+            transform: translateY(-5px);
+        }
+        .experience-item img {
+            width: 120px;
+            height: auto;
+            border-radius: 5px;
+            margin-right: 20px;
+        }
+        .education p {
+            font-family: 'Prata', serif;
+        }
+                /* Mobile Version Code */
+@media (max-width: 768px) {
+    .experience-item {
+        flex-direction: column;
+        text-align: center;
+    }
+    .experience-item img {
+        width: 100px;
+        height: 100px; /* Making the image square */
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+}/* Default styles (for desktop) */
+#contact-wrapper {
+    padding: 100px 20px;
+    position: relative;
+    z-index: 2;
+}
+.contact-box {
+    border: 2px solid #333;
+    border-radius: 10px;
+    padding: 20px;
+    width: 300px;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.7);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    margin: 0 auto;
+}
+.contact-box h3 {
+    margin-top: 0;
+    color: #fff;
+}
+.contact-box p {
+    color: #fff;
+}
+.contact-box a {
+    color: #d2ba83;
+    text-decoration: none;
+}
+.contact-box a:hover {
+    text-decoration: underline;
+}
+.contact-box form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.contact-box input,
+.contact-box textarea {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-family: 'Prata', serif;
+}
+.contact-box button {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #d2ba83;
+    color: white;
+    cursor: pointer;
+    font-family: 'Prata', serif;
+}
+.contact-box button:hover {
+    background-color: #45a049;
+}
+.contact-box i {
+    margin-right: 5px;
+}
+.contact-section {
+    display: flex;
+    align-items: center;
+    background-color: black;
+    justify-content: center;
+}
+.contact-wrapper {
+    background-color: black;
+    padding: 20px;
+    flex: 1;
+}
+.contact-image-container img {
+    max-width: 300px;
+    height: auto;
+    object-fit: cover;
+}
+#thank-you-message {
+    display: none;
+    margin-top: 20px;
+    color: #FFFFFF;
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {
+    #contact-wrapper {
+        padding: 100px 20px;
+        position: relative;
+        z-index: 2;
+    }
+    .contact-section .contact-image-container {
+        display: none !important;
+    }
+    .contact-box {
+        border: 2px solid #333;
+        border-radius: 10px;
+        padding: 20px;
+        width: 300px;
+        text-align: center;
+        background-color: #000;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        margin: 0 auto;
+    }
+    .contact-box h3 {
+        margin-top: 0;
+        color: #fff;
+    }
+    .contact-box p {
+        color: #fff;
+    }
+    .contact-box a {
+        color: #d2ba83;
+        text-decoration: none;
+    }
+    .contact-box a:hover {
+        text-decoration: underline;
+    }
+    .contact-box form {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+    .contact-box input,
+    .contact-box textarea {
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-family: 'Prata', serif;
+    }
+    .contact-box button {
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        background-color: #d2ba83;
+        color: white;
+        cursor: pointer;
+        font-family: 'Prata', serif;
+    }
+    .contact-box button:hover {
+        background-color: #45a049;
+    }
+    .contact-box i {
+        margin-right: 5px;
+    }
+    .contact-section {
+        display: flex;
+        align-items: center;
+        background-color: black;
+        justify-content: center;
+    }
+    .contact-wrapper {
+        background-color: black;
+        padding: 20px;
+        flex: 1;
+    }
+    #thank-you-message {
+        display: none;
+        margin-top: 20px;
+        color: #FFFFFF;
+    }
+}
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="logo">
+            <img src="./images/IMG_2377.jpeg" alt="Your Logo">
+        </div>
+        <!-- Navigation buttons for desktop -->
+        <div class="nav-buttons">
+            <button onclick="document.getElementById('about').scrollIntoView({behavior: 'smooth'})">About</button>
+            <button onclick="document.getElementById('videos').scrollIntoView({behavior: 'smooth'})">Videos</button>
+            <button onclick="document.getElementById('pictures').scrollIntoView({behavior: 'smooth'})">Pictures</button>
+            <button onclick="document.getElementById('education').scrollIntoView({behavior: 'smooth'})">Education and Experience</button>
+            <button onclick="document.getElementById('contactme').scrollIntoView({behavior: 'smooth'})">Contact</button>
+        </div>
+<!-- Dropdown for mobile -->
+        <div class="nav-dropdown">
+            <button class="dropdown-button">☰</button>
+            <div class="dropdown-content">
+                <button onclick="document.getElementById('about').scrollIntoView({behavior: 'smooth'})">About</button>
+                <button onclick="document.getElementById('videos').scrollIntoView({behavior: 'smooth'})">Videos</button>
+                <button onclick="document.getElementById('pictures').scrollIntoView({behavior: 'smooth'})">Pictures</button>
+                <button onclick="document.getElementById('education').scrollIntoView({behavior: 'smooth'})">Education and Experience</button>
+                <button onclick="document.getElementById('contactme').scrollIntoView({behavior: 'smooth'})">Contact</button>
+            </div>
+        </div>
+    </div>
+        <div class="nav-buttons">
+            <button onclick="document.getElementById('about').scrollIntoView({behavior: 'smooth'})">About</button>
+            <button onclick="document.getElementById('videos').scrollIntoView({behavior: 'smooth'})">Videos</button>
+            <button onclick="document.getElementById('pictures').scrollIntoView({behavior: 'smooth'})">Pictures</button>
+            <button onclick="document.getElementById('education').scrollIntoView({behavior: 'smooth'})">Education and Experience</button>
+            <button onclick="document.getElementById('contactme').scrollIntoView({behavior: 'smooth'})">Contact</button>
+        </div>
+    </div>
+    <div class="full-screen-image"></div>
+    <div id="about" class="about">
+        <h1>About</h1>
+        <div class="container">
+            <div class="left">
+                <div class="image">
+                    <img 
+                    src="./images/me.jpg" 
+                    alt="me" 
+                    srcset="./images/circle1.JPEG 768w, ./images/me.jpg 1200w"
+                    sizes="(max-width: 768px) 150px, 100%"
+                >
+                </div>
+            </div>
+            <div class="right">
+                <div class="text">
+                    <div class="text-content">
+                        <p>Welcome to the world of wonder and artistry of Anastasiia, a professional circus performer specializing in hula-hoop, contortion, and aerial performances. Born in a beautiful small town in Ukraine, Anastasiia’s journey into the world of performance began at an early age.</p>
+                        <p>At the age of seven, she joined the children’s circus studio “Melange-Art,” and this early exposure to the circus arts led to a significant milestone in 2016 when, as part of a group of neon jugglers, Anastasiia became a finalist on “Ukrainian Got Talent. Kids.”</p>
+                        <p>From 2017 to 2018, her skills and passion took her to the renowned Ukrainian circus Kobzov, where she performed as a neon and fire juggler of the ballet. This period was incredibly enriching and solidified her passion and love for performing and circus arts.</p>
+                        <p>In 2018, Anastasiia furthered her skills by entering the Kiev Municipal Academy of Circus and Performing Arts. There, she studied juggling, contortion with hoops, acting, pantomime, and both classical and modern choreography, graduating with a Junior Specialist degree in 2021 and embarking on a journey toward earning a Bachelor’s degree. At the Academy, she was mentored by Iryna Pitsur, a renowned artist and coach, who played a crucial role in shaping Anastasiia’s unique style and performance techniques.</p>
+                        <p>Anastasiia’s act is a combination of grace, sensuality, and the aesthetics of professional hooping tricks, all brought to life with beautiful costumes and music written especially for the performance. It’s a new vision of hula-hoop art, directed by Iryna Pitsur.</p>
+                        <p>Anastasiia has had the privilege of collaborating with Celebrity Cruises, being part of their inaugural cast on the launch of their new ship, Celebrity Beyond.
+This opportunity allowed her to work with esteemed producers such as Dondraico Johnson, Michelle Lynskey, Holly Palmer, and Michael Fatice, enriching the shows with her expertise in hula-hoop, contortion, and aerial acts. Additionally, Anastasiia was a part of the collaboration between Cirque Éloize and Princess Cruises, where she performed in various disciplines such as hula-hoop, aerial pole, silks, and dance. She has toured across the USA, bringing joy, wonder, and inspiration to diverse audiences.</p>
+                        <p>This is just the beginning of her adventure in the performing arts, and having had many opportunities to showcase her talent on stages all over the world, it creates a burning excitement in her to see where the journey takes her next!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="videos" class="videos">
+        <h1 style="text-align: center;">Videos</h1>
+    <ul class="video-list">
+        <li class="video-item">
+            <h2 class="video-title">Promo</h2>
+            <a class="video-link" href="https://www.youtube.com/embed/cXxXEPCQ5mA">
+                <iframe src="https://www.youtube.com/embed/cXxXEPCQ5mA" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </a>
+        </li>
+        <li class="video-item">
+            <h2 class="video-title">Hula hoop - Contortion act</h2>
+            <a class="video-link" href="https://www.youtube.com/embed/n_NntlIcSWA">
+                <iframe src="https://www.youtube.com/embed/n_NntlIcSWA" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </a>
+        </li>
+                <li class="video-item">
+            <h2 class="video-title">"Hula hoop" ~ Princess Cruises / Eloize 2024</h2>
+            <a class="video-link" href="https://www.youtube.com/embed/zDfni1uL7xM">
+                <iframe src="https://www.youtube.com/embed/zDfni1uL7xM" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </a>
+        </li>
+                <li class="video-item">
+            <h2 class="video-title">"Aerial pole" ~ Princess Cruises / Eloize 2024</h2>
+            <a class="video-link" href="https://www.youtube.com/embed/WiGQ-rmjs2k">
+                <iframe src="https://www.youtube.com/embed/WiGQ-rmjs2k" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </a>
+        </li>
+        <li class="video-item">
+            <h2 class="video-title">"Wizards in Winter" ~ Cirque Musica 2023</h2>
+            <a class="video-link" href="https://www.youtube.com/embed/2j2YWaLqeIo">
+                <iframe src="https://www.youtube.com/embed/2j2YWaLqeIo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </a>
+        </li>
+        <li class="video-item">
+            <h2 class="video-title">Contortion ~ Celebrity Cruises 2021-2023</h2>
+            <a class="video-link" href="https://www.youtube.com/embed/db67Y0X9ZKk">
+                <iframe src="https://www.youtube.com/embed/db67Y0X9ZKk" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </a>
+        </li>
+        <li class="video-item">
+            <h2 class="video-title">Aerial Lyra experience</h2>
+            <a class="video-link" href="https://www.youtube.com/embed/iknI4urKxaY">
+                <iframe src="https://www.youtube.com/embed/iknI4urKxaY" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </a>
+            </li>
+        <li class="video-item">
